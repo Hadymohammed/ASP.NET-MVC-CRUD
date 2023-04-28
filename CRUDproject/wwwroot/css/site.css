@@ -1,5 +1,11 @@
+:root {
+    --main-bg-color: #212A3E;
+    --nav-bg-color: #394867;
+    --main-txt-color: #F1F6F9;
+}
 html {
-  font-size: 14px;
+    font-size: 14px;
+    color:var(--main-txt-color)
 }
 
 @media (min-width: 768px) {
@@ -11,8 +17,33 @@ html {
 html {
   position: relative;
   min-height: 100%;
+  color:var(--main-txt-color);
+}
+a {
+    color: var(--main-txt-color);
 }
 
 body {
-  margin-bottom: 60px;
+    margin-bottom: 60px;
+    background-color: var(--main-bg-color);
+    color: var(--main-txt-color);
+}
+.nav-bar {
+    background-color: var(--nav-bg-color);
+    color: var(--main-txt-color);
+}
+.nav-link {
+    color: var(--main-txt-color);
+}
+.nav-link:hover {
+    color: #05BFDB;
+}
+.navbar-brand:hover {
+    color: #05BFDB;
+}
+.table{
+    color: var(--main-txt-color);
+}
+.table-striped > tbody > tr:nth-of-type(odd) {
+    color: white;
 }
