@@ -29,8 +29,10 @@ namespace CRUDproject.Controllers
             {
                 _db.categories.Add(nw);
                 _db.SaveChanges();
+                TempData["success"] = "Category Created successfully";
                 return RedirectToAction("Index");
             }
+            TempData["error"] = "Category creation failed successfully";
             return View(nw);
         }
         [HttpGet]
@@ -49,9 +51,37 @@ namespace CRUDproject.Controllers
             {
                 _db.categories.Update(nw);
                 _db.SaveChanges();
+                TempData["success"] = "Category updated successfully";
                 return RedirectToAction("Index");
             }
+            TempData["error"] = "Category update failed";
             return View(nw);
+        }
+        [HttpGet]
+        public IActionResult Delete(int? Id)
+        {
+            if (Id == null || Id == 0)
+                return NotFound();
+            var category = _db.categories.FirstOrDefault(c => c.Id == Id);
+            if(category==null)
+                return NotFound();
+
+            return View(category);
+        }
+        [HttpPost,ActionName("Delete")]
+        public IActionResult DeletePost(Category category)
+        {
+            if (category == null)
+            {
+                TempData["error"] = "Category delete failed";
+            }
+            else
+            {
+                _db.categories.Remove(category);
+                _db.SaveChanges();
+                TempData["success"] = "Category deleted successfully";
+            }
+            return RedirectToAction("Index");
         }
     }
 }
