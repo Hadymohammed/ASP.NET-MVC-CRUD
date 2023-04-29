@@ -25,21 +25,33 @@ namespace CRUDproject.Controllers
         [HttpPost]
         public IActionResult Create(Category nw)
         {
-            _db.categories.Add(nw);
-            _db.SaveChanges();
-            return RedirectToAction("Index");
+            if (ModelState.IsValid)
+            {
+                _db.categories.Add(nw);
+                _db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            return View(nw);
         }
         [HttpGet]
-        public IActionResult update(int Id)
+        public IActionResult Update(int? Id)
         {
-            Category obj = _db.categories.FirstOrDefault(c => c.Id == Id);
-            return View(obj);
+            if (Id == null || Id == 0)
+                return NotFound();
+            var category = _db.categories.FirstOrDefault(c => c.Id == Id);
+            return View(category);
         }
         [HttpPost]
-        public IActionResult update(Category nw)
+        public IActionResult Update(Category nw)
         {
 
-            return RedirectToAction("Index");
+            if (ModelState.IsValid)
+            {
+                _db.categories.Update(nw);
+                _db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            return View(nw);
         }
     }
 }

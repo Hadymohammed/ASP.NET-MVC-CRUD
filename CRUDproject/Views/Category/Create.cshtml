@@ -1,13 +1,28 @@
-﻿@{
+﻿@model Category
+@{
     ViewData["Title"] = "New Category";
 }
 <div class="container md-3">
     <h3 class="row">Create new category</h3>
     <form class="form" style="width:50%" asp-controller="Category" asp-action="Create">
-        <label for="Name" class="form-label">Category name</label>
-        <input name="Name" class="form-control" type="text"/>
-        <label for="Displayname" class="form-label">Display name</label>
-        <input name="Displayname" class="form-control" type="text"/>
-        <input class="btn btn-primary mt-3" type="submit"/>
+        <div class="row">
+            <label for="Name" class="form-label">Category name</label>
+            <input name="Name" class="form-control" type="text"/>
+            <span asp-validation-for="Name" class="text-danger" ></span>
+        </div>
+        <div class="row">
+            <label for="Displayname" class="form-label">Display name</label>
+            <input name="Displayname" class="form-control" type="text"/>
+            <span asp-validation-for="Displayname" class="text-danger" ></span>
+        </div>
+        <div>
+            <button class="btn btn-primary m-3" type="submit" >Create</button>
+            <a class="btn btn-light m-3" asp-action="Index">Back to list</a>
+        </div>
     </form>
-</di>
+</div>
+@section Scripts{
+    @{
+        <partial name="_ValidationScriptsPartial"/>
+    }
+}
