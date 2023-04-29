@@ -3,14 +3,22 @@
 }
 @model IEnumerable<Category> 
 
-<h1>Categories</h1>
-
-<table class="table table-bordered table-striped">
+<div class="container">
+    <div class="row p-3">
+        <h3 class="col-6">Category list</h3>
+        <div class="col-6 text-end">
+            <a class="btn btn-primary"asp-controller="Category" asp-action="Create">
+                <i class="bi bi-plus-square pr-3"></i>
+                Create new</a>
+        </div>
+    </div>
+</div>
+<table class="table table-bordered style='width:100%;' ">
     <thead>
         <tr>
             <th>ID</th>
             <th>Name</th>
-            <th>Action</th>
+            <th style="width:20%">Action</th>
         </tr>
     </thead>
     <tbody>
@@ -23,8 +31,11 @@
                     @obj.Name
                 </td>
                 <td>
-                    <a class="btn btn-outline-secondary">Update</a>
-                    <a class="btn btn-outline-danger"><span><i class="bi bi-trash"></i>Delete</span></a>
+                    <a class="btn btn-outline-warning" asp-controller="Categoty" asp-action="update">Update</a>
+                    <a class="btn btn-outline-danger" asp-controller="Categoty" asp-action="delete">
+                            <i class="bi bi-trash pr-3"></i>
+                        Delete
+                        </a>
                 </td>
             </tr>
         }

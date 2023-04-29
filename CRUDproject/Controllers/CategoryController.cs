@@ -17,5 +17,29 @@ namespace CRUDproject.Controllers
             IEnumerable<Category> categories = _db.categories;
             return View(categories);
         }
+        [HttpGet]
+        public IActionResult Create()
+        {
+            return View();
+        }
+        [HttpPost]
+        public IActionResult Create(Category nw)
+        {
+            _db.categories.Add(nw);
+            _db.SaveChanges();
+            return RedirectToAction("Index");
+        }
+        [HttpGet]
+        public IActionResult update(int Id)
+        {
+            Category obj = _db.categories.FirstOrDefault(c => c.Id == Id);
+            return View(obj);
+        }
+        [HttpPost]
+        public IActionResult update(Category nw)
+        {
+
+            return RedirectToAction("Index");
+        }
     }
 }
